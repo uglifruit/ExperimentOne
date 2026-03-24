@@ -1,6 +1,12 @@
 "use client";
 
-export default function NavBar() {
+import Link from 'next/link'
+
+interface NavBarProps {
+  userEmail?: string | null
+}
+
+export default function NavBar({ userEmail }: NavBarProps) {
   return (
     <nav className="geo-nav sticky top-0 z-50">
       {/* Marquee bar */}
@@ -48,10 +54,57 @@ export default function NavBar() {
           <a href="#cta" className="geo-nav-link">📧 Email Us</a>
         </div>
 
-        {/* Visitor counter */}
-        <div className="flex flex-col items-center" style={{ fontSize: "0.65rem", color: "#AAAAAA" }}>
-          <span>YOU ARE VISITOR #</span>
-          <span className="visitor-counter">0004269</span>
+        {/* Right side: auth + visitor counter */}
+        <div className="flex items-center gap-3 flex-wrap">
+          {/* Auth button */}
+          {userEmail ? (
+            <Link
+              href="/vip"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px',
+                background: 'linear-gradient(180deg, #FFD700, #FF6600)',
+                border: '2px outset #FFE566',
+                color: '#000',
+                fontWeight: 'bold',
+                fontSize: '0.85rem',
+                padding: '6px 14px',
+                textDecoration: 'none',
+                letterSpacing: '1px',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              👑 VIP AREA
+            </Link>
+          ) : (
+            <Link
+              href="/login"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px',
+                background: 'linear-gradient(180deg, #FF00FF, #9900CC)',
+                border: '2px outset #FF99FF',
+                color: '#FFFF00',
+                fontWeight: 'bold',
+                fontSize: '0.85rem',
+                padding: '6px 14px',
+                textDecoration: 'none',
+                letterSpacing: '1px',
+                whiteSpace: 'nowrap',
+                animation: 'pulse-glow 2s ease-in-out infinite',
+              }}
+            >
+              🔐 VIP LOGIN / REGISTER
+            </Link>
+          )}
+
+          {/* Visitor counter */}
+          <div className="flex flex-col items-center" style={{ fontSize: "0.65rem", color: "#AAAAAA" }}>
+            <span>YOU ARE VISITOR #</span>
+            <span className="visitor-counter">0004269</span>
+          </div>
         </div>
       </div>
     </nav>

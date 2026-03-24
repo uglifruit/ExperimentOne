@@ -1,7 +1,6 @@
 'use server'
 import { redirect } from 'next/navigation'
-import { createSession, deleteSession } from '@/app/lib/session'
-import { findUserByEmail, createUser, verifyPassword } from '@/app/lib/users'
+import { createClient } from '@/app/lib/supabase-server'
 
 export async function signup(prevState: { error?: string } | undefined, formData: FormData) {
   const email = (formData.get('email') as string)?.trim()
@@ -10,11 +9,11 @@ export async function signup(prevState: { error?: string } | undefined, formData
   if (!email || !password) return { error: 'Email and password are required.' }
   if (password.length < 8) return { error: 'Password must be at least 8 characters.' }
 
-  const existing = await findUserByEmail(email)
-  if (existing) return { error: 'An account with this email already exists.' }
+  const supabase = await createClient()
+  const { error } = await supabase.auth.signUp({ email, password })
 
-  const user = await createUser(email, password)
-  await createSession(user.id, user.email)
+  if (error) return { error: error.message }
+
   redirect('/vip')
 }
 
@@ -24,17 +23,16 @@ export async function login(prevState: { error?: string } | undefined, formData:
 
   if (!email || !password) return { error: 'Email and password are required.' }
 
-  const user = await findUserByEmail(email)
-  if (!user) return { error: 'Invalid email or password.' }
+  const supabase = await createClient()
+  const { error } = await supabase.auth.signInWithPassword({ email, password })
 
-  const valid = await verifyPassword(password, user.passwordHash)
-  if (!valid) return { error: 'Invalid email or password.' }
+  if (error) return { error: 'Invalid email or password.' }
 
-  await createSession(user.id, user.email)
   redirect('/vip')
 }
 
 export async function logout() {
-  await deleteSession()
+  const supabase = await createClient()
+  await supabase.auth.signOut()
   redirect('/')
 }

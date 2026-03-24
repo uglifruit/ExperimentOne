@@ -1,4 +1,4 @@
-import { createClient } from '@/app/lib/supabase-server'
+import { createAdminClient } from '@/app/lib/supabase-admin'
 import { getSession } from '@/app/lib/session'
 import GuestbookForm from '@/components/GuestbookForm'
 import Link from 'next/link'
@@ -13,7 +13,7 @@ interface GuestbookEntry {
 export const revalidate = 0
 
 export default async function GuestbookPage() {
-  const supabase = await createClient()
+  const supabase = createAdminClient()
   const session = await getSession()
 
   const { data: entries } = await supabase

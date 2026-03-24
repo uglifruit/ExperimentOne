@@ -49,7 +49,7 @@ export default function NavBar({ userEmail }: NavBarProps) {
         <div className="flex items-center gap-2 flex-wrap">
           <a href="#features" className="geo-nav-link">🏠 Home</a>
           <a href="#features" className="geo-nav-link">🤖 AI Tools</a>
-          <a href="#testimonials" className="geo-nav-link">💬 Guestbook</a>
+          <Link href="/guestbook" className="geo-nav-link">💬 Guestbook</Link>
           <a href="#faq" className="geo-nav-link">❓ FAQ</a>
           <a href="#cta" className="geo-nav-link">📧 Email Us</a>
         </div>

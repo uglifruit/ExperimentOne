@@ -1,26 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap');
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* ~~~*~~~ MAGIC TEACHER GEOCITIES SUPREME STYLESHEET ~~~*~~~ */
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  font-family: 'Comic Neue', 'Comic Sans MS', cursive !important;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #000066;
+  background-image:
+    radial-gradient(circle at 20% 50%, rgba(102, 0, 153, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(0, 153, 153, 0.3) 0%, transparent 50%);
+  min-height: 100vh;
+  color: white;
+}
+
+/* BLINK ANIMATION - The crown jewel of 90s web */
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+.blink { animation: blink 1s step-end infinite; }
+.blink-fast { animation: blink 0.4s step-end infinite; }
+
+/* MARQUEE */
+@keyframes marquee {
+  0% { transform: translateX(100vw); }
+  100% { transform: translateX(-100%); }
+}
+.marquee-inner {
+  display: inline-block;
+  animation: marquee 18s linear infinite;
+  white-space: nowrap;
+}
+
+/* RAINBOW TEXT */
+@keyframes rainbow {
+  0%   { color: #FF0000; }
+  16%  { color: #FF6600; }
+  33%  { color: #FFFF00; }
+  50%  { color: #00FF00; }
+  66%  { color: #0099FF; }
+  83%  { color: #9900FF; }
+  100% { color: #FF0000; }
+}
+.rainbow { animation: rainbow 1.5s linear infinite; }
+
+/* SPINNING */
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.spin-slow { display: inline-block; animation: spin 4s linear infinite; }
+.spin-fast { display: inline-block; animation: spin 0.8s linear infinite; }
+
+/* BOUNCE */
+@keyframes geo-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+.bounce { animation: geo-bounce 0.9s ease-in-out infinite; }
+
+/* PULSE GLOW */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 8px #FF00FF, 0 0 16px #FF00FF; }
+  50%       { box-shadow: 0 0 24px #00FFFF, 0 0 48px #00FFFF; }
+}
+.glow-box { animation: pulse-glow 2s ease-in-out infinite; }
+
+/* WAVE LETTERS */
+@keyframes wave {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-10px); }
+}
+.wave-letter { display: inline-block; animation: wave 0.8s ease-in-out infinite; }
+.wave-letter:nth-child(1)  { animation-delay: 0.00s; }
+.wave-letter:nth-child(2)  { animation-delay: 0.08s; }
+.wave-letter:nth-child(3)  { animation-delay: 0.16s; }
+.wave-letter:nth-child(4)  { animation-delay: 0.24s; }
+.wave-letter:nth-child(5)  { animation-delay: 0.32s; }
+.wave-letter:nth-child(6)  { animation-delay: 0.40s; }
+.wave-letter:nth-child(7)  { animation-delay: 0.48s; }
+.wave-letter:nth-child(8)  { animation-delay: 0.56s; }
+.wave-letter:nth-child(9)  { animation-delay: 0.64s; }
+.wave-letter:nth-child(10) { animation-delay: 0.72s; }
+.wave-letter:nth-child(11) { animation-delay: 0.80s; }
+.wave-letter:nth-child(12) { animation-delay: 0.88s; }
+.wave-letter:nth-child(13) { animation-delay: 0.96s; }
+
+/* CONSTRUCTION FLASH */
+@keyframes construct {
+  0%, 100% { background: #FFFF00; color: #000; }
+  50%       { background: #FF6600; color: #fff; }
+}
+.construction { animation: construct 0.6s step-end infinite; padding: 2px 10px; font-weight: bold; }
+
+/* GEOCITIES CARD */
+.geo-card {
+  border: 3px solid #FFFF00;
+  background: linear-gradient(135deg, #000033, #000066, #000033);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.15s, border-color 0.15s;
+}
+.geo-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #FF0000, #FF6600, #FFFF00, #00FF00, #00FFFF, #9900FF, #FF00FF);
+}
+.geo-card:hover {
+  border-color: #FF00FF;
+  transform: scale(1.03);
+  box-shadow: 0 0 20px #FF00FF;
+}
+
+/* NAV */
+.geo-nav {
+  background: linear-gradient(180deg, #330066 0%, #000033 100%);
+  border-bottom: 3px solid #FF00FF;
+  box-shadow: 0 0 20px #FF00FF;
+}
+.geo-nav-link {
+  color: #FFFF00;
+  border: 1px solid #FFFF00;
+  padding: 4px 14px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.1s;
+  font-size: 0.9rem;
+}
+.geo-nav-link:hover { background: #FFFF00; color: #000; }
+
+/* BUTTON */
+.geo-button {
+  background: linear-gradient(180deg, #FF00FF, #9900CC);
+  border: 3px outset #FF99FF;
+  color: #FFFF00;
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 10px 28px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-family: 'Comic Neue', 'Comic Sans MS', cursive !important;
+}
+.geo-button:hover { background: linear-gradient(180deg, #FFFF00, #FF6600); color: #000; }
+.geo-button:active { border-style: inset; }
+
+/* VISITOR COUNTER */
+.visitor-counter {
+  background: #000;
+  border: 2px inset #888;
+  color: #00FF00;
+  font-family: 'Courier New', monospace !important;
+  padding: 3px 8px;
+  letter-spacing: 6px;
+  font-size: 1.1rem;
+}
+
+/* HR */
+.geo-hr {
+  border: none;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, #FF00FF, #00FFFF, #FFFF00, #FF00FF, transparent);
+  margin: 12px 0;
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar { width: 12px; }
+::-webkit-scrollbar-track { background: #000066; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(#FF00FF, #9900CC);
+  border: 2px solid #FF99FF;
 }
